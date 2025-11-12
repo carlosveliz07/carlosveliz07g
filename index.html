@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carlos & Janeth 💕</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fcb69f);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      overflow-x: hidden;
+      color: #fff;
+      position: relative;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 3em;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Corazones flotantes */
+    .heart {
+      position: absolute;
+      bottom: -10px;
+      color: red;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Carrusel */
+    .carousel-container {
+      position: relative;
+      width: 80%;
+      max-width: 900px;
+      margin: 50px auto;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .carousel-slide {
+      display: flex;
+      transition: transform 1s ease-in-out;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      flex-shrink: 0;
+      border-radius: 20px;
+      animation: breathe 4s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    .prev,
+    .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.5);
+      color: #ff4d6d;
+      font-weight: bold;
+      border: none;
+      font-size: 2em;
+      cursor: pointer;
+      border-radius: 50%;
+      padding: 10px 15px;
+      transition: background 0.3s;
+    }
+
+    .prev:hover,
+    .next:hover {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    /* Botón de mensaje */
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .show-message-btn {
+      background: #fff;
+      color: #ff4d6d;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.2em;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .show-message-btn:hover {
+      transform: scale(1.1);
+      background: #ffe6ea;
+    }
+
+    .message-box {
+      display: none;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      color: #ff4d6d;
+      font-size: 1.3em;
+      margin: 30px auto;
+      width: 70%;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      animation: slideUp 0.8s ease forwards;
+    }
+
+    @keyframes slideUp {
+      0% {
+        transform: translateY(100px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Música */
+    .music-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #ff4d6d;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 1.5em;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+    }
+
+    .music-control:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Feliz primer mes juntitos 💖</h1>
+  <!-- Carrusel -->
+  <div class="carousel-container">
+    <div class="carousel-slide" id="carouselSlide">
+      <img src="/fotitos/Fotito-01.jpeg" alt="Foto 1" width="100px" height="700px">
+      <img src="/fotitos/Fotito-02.jpeg" alt="Foto 2" width="100px" height="700px">
+      <img src="/fotitos/Fotito-03.jpeg" alt="Foto 3" width="100px" height="700px">
+      <img src="/fotitos/Fotito-04.jpeg" alt="Foto 4" width="100px" height="700px">
+      <img src="/fotitos/Fotito-05.jpeg" alt="Foto 5" width="100px" height="700px">
+      <img src="/fotitos/Fotito-06.jpeg" alt="Foto 6" width="100px" height="700px">
+      <img src="/fotitos/Fotito-07.jpeg" alt="Foto 7" width="100px" height="700px">
+      <img src="/fotitos/Fotito-08.jpeg" alt="Foto 8" width="100px" height="700px">
+      <img src="/fotitos/Fotito-09.jpeg" alt="Foto 9" width="100px" height="700px">
+      <img src="/fotitos/Fotito-10.jpeg" alt="Foto 10" width="100px" height="700px">
+      <img src="/fotitos/Fotito-11.jpeg" alt="Foto 11" width="100px" height="700px">
+      <img src="/fotitos/Fotito-12.jpeg" alt="Foto 12" width="100px" height="700px">
+      <img src="/fotitos/Fotito-13.jpeg" alt="Foto 13" width="100px" height="700px">
+      <img src="/fotitos/Fotito-14.jpeg" alt="Foto 14" width="100px" height="700px">
+      <img src="/fotitos/Fotito-15.jpeg" alt="Foto 15" width="100px" height="700px">
+      <img src="/fotitos/Fotito-16.jpeg" alt="Foto 16" width="100px" height="700px">
+      <img src="/fotitos/Fotito-17.jpeg" alt="Foto 17" width="100px" height="700px">
+      <img src="/fotitos/Fotito-18.jpeg" alt="Foto 18" width="100px" height="700px">
+      <img src="/fotitos/Fotito-19.jpeg" alt="Foto 19" width="100px" height="700px">
+      <img src="/fotitos/Fotito-20.jpeg" alt="Foto 20" width="100px" height="700px">
+      <img src="/fotitos/Fotito-21.jpeg" alt="Foto 21" width="100px" height="700px">
+      <img src="/fotitos/Fotito-22.jpeg" alt="Foto 22" width="100px" height="700px">
+      <img src="/fotitos/Fotito-23.jpeg" alt="Foto 23" width="100px" height="700px">
+      <img src="/fotitos/Fotito-24.png" alt="Foto 24" width="100px" height="700px">
+      <!-- Agrega hasta 20 fotos aquí -->
+    </div>
+    <button class="prev" id="prevBtn">❮</button>
+    <button class="next" id="nextBtn">❯</button>
+  </div>
+
+  <!-- Botón de mensaje -->
+  <div class="button-container">
+    <button class="show-message-btn" id="toggleMessageBtn">💌 Ver mensaje especial</button>
+  </div>
+
+  <!-- Mensaje romántico -->
+  <div class="message-box" id="messageBox">
+    <p style="text-align: justify;">Mi amor,
+      <br><br>Hoy celebramos nuestro primer mes juntos, y no sabes cuánto significa para mí. Han pasado solo unos días, pero
+      contigo siento que el tiempo se llena de magia, risas, cariño y momentos que ya guardo con el corazón.
+      <br><br>Gracias por llegar a mi vida, por tus detalles, tu ternura y por hacerme sentir tan especial. Este primer mes ha
+      sido solo el comienzo de algo hermoso, y cada día contigo me convence más de que quiero seguir construyendo muchos
+      meses (y años) a tu lado.
+      <br><br>Te amo muchísimo, mi osita de sonrisa bonita ❤️</p>
+  </div>
+
+  <!-- Música -->
+  <audio id="backgroundMusic" loop>
+    <source src="/musica/Floricienta  Flores Amarillas [Letra].mp3" type="audio/mpeg">
+  </audio>
+  <button class="music-control" id="musicBtn">🎵</button>
+
+  <script>
+    // Animación de corazones
+    const body = document.body;
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      heart.innerHTML = "❤️";
+      body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 400);
+
+    // Carrusel automático
+    const slide = document.getElementById("carouselSlide");
+    const images = slide.querySelectorAll("img");
+    const totalImages = images.length;
+    let index = 0;
+
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+
+    function showSlide(i) {
+      slide.style.transform = `translateX(${-i * 100}%)`;
+    }
+
+    nextBtn.addEventListener("click", () => {
+      index = (index + 1) % totalImages;
+      showSlide(index);
+    });
+
+    prevBtn.addEventListener("click", () => {
+      index = (index - 1 + totalImages) % totalImages;
+      showSlide(index);
+    });
+
+    setInterval(() => {
+      index = (index + 1) % totalImages;
+      showSlide(index);
+    }, 4000); // cambia cada 4 segundos
+
+    // Mostrar / ocultar mensaje
+    const toggleMessageBtn = document.getElementById("toggleMessageBtn");
+    const messageBox = document.getElementById("messageBox");
+    let isVisible = false;
+
+    toggleMessageBtn.addEventListener("click", () => {
+      isVisible = !isVisible;
+      messageBox.style.display = isVisible ? "block" : "none";
+      toggleMessageBtn.textContent = isVisible ? "💞 Ocultar mensaje" : "💌 Ver mensaje especial";
+    });
+
+    // Música
+    const music = document.getElementById("backgroundMusic");
+    const musicBtn = document.getElementById("musicBtn");
+    let isPlaying = false;
+
+    musicBtn.addEventListener("click", () => {
+      if (!isPlaying) {
+        music.play();
+        musicBtn.textContent = "⏸️";
+      } else {
+        music.pause();
+        musicBtn.textContent = "🎵";
+      }
+      isPlaying = !isPlaying;
+    });
+  </script>
+</body>
+
+</html>
