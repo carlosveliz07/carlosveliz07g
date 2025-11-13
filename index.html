@@ -248,80 +248,50 @@
   </div>
 
   <!-- Música -->
-  <audio id="backgroundMusic" loop>
-    <source src="./musica/Floricienta  Flores Amarillas [Letra].mp3" type="audio/mpeg">
-  </audio>
+  <audio id="backgroundMusic"></audio>
   <button class="music-control" id="musicBtn">🎵</button>
 
   <script>
-    // Animación de corazones
-    const body = document.body;
-    setInterval(() => {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 20 + 15 + "px";
-      heart.innerHTML = "❤️";
-      body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }, 400);
-
-    // Carrusel automático
-    const slide = document.getElementById("carouselSlide");
-    const images = slide.querySelectorAll("img");
-    const totalImages = images.length;
-    let index = 0;
-
-    const nextBtn = document.getElementById("nextBtn");
-    const prevBtn = document.getElementById("prevBtn");
-
-    function showSlide(i) {
-      slide.style.transform = `translateX(${-i * 100}%)`;
-    }
-
-    nextBtn.addEventListener("click", () => {
-      index = (index + 1) % totalImages;
-      showSlide(index);
-    });
-
-    prevBtn.addEventListener("click", () => {
-      index = (index - 1 + totalImages) % totalImages;
-      showSlide(index);
-    });
-
-    setInterval(() => {
-      index = (index + 1) % totalImages;
-      showSlide(index);
-    }, 4000); // cambia cada 4 segundos
-
-    // Mostrar / ocultar mensaje
-    const toggleMessageBtn = document.getElementById("toggleMessageBtn");
-    const messageBox = document.getElementById("messageBox");
-    let isVisible = false;
-
-    toggleMessageBtn.addEventListener("click", () => {
-      isVisible = !isVisible;
-      messageBox.style.display = isVisible ? "block" : "none";
-      toggleMessageBtn.textContent = isVisible ? "💞 Ocultar mensaje" : "💌 Ver mensaje especial";
-    });
-
-    // Música
+    // --- Música en secuencia ---
     const music = document.getElementById("backgroundMusic");
     const musicBtn = document.getElementById("musicBtn");
     let isPlaying = false;
 
+    // Lista de canciones
+    const playlist = [
+      "./musica/Floricienta  Flores Amarillas [Letra].mp3",
+      "./musica/Yellow-ColdPlay.mp3"
+    ];
+
+    let currentTrack = 0;
+
+    // Función para cargar y reproducir una canción
+    function loadAndPlay(trackIndex) {
+      music.src = playlist[trackIndex];
+      music.play();
+      isPlaying = true;
+      musicBtn.textContent = "⏸️";
+    }
+
+    // Cuando termina una canción, pasa a la siguiente
+    music.addEventListener("ended", () => {
+      currentTrack = (currentTrack + 1) % playlist.length; // vuelve al inicio si termina
+      loadAndPlay(currentTrack);
+    });
+
+    // Botón de control
     musicBtn.addEventListener("click", () => {
       if (!isPlaying) {
-        music.play();
-        musicBtn.textContent = "⏸️";
+        loadAndPlay(currentTrack);
       } else {
         music.pause();
+        isPlaying = false;
         musicBtn.textContent = "🎵";
       }
-      isPlaying = !isPlaying;
     });
   </script>
 </body>
 
 
 </html>
+
