@@ -194,7 +194,6 @@
     <button class="show-message-btn" id="toggleMessageBtn">💌 Ver mensaje especial</button>
   </div>
 
-  <!-- TU CARTA TAL CUAL -->
   <div class="message-box" id="messageBox">
     <p style="text-align: justify;">Mi amor,
       <br><br>Hoy celebramos nuestro primer mes juntos, y no sabes cuánto significa para mí. Han pasado solo unos días,
@@ -209,13 +208,12 @@
   </div>
 
   <script>
-    // ===== CARRUSEL CON TRANSICIÓN AUTOMÁTICA =====
     const slide = document.getElementById("carouselSlide");
     const images = document.querySelectorAll(".carousel-slide img");
     let index = 0;
 
     function goToSlide(i) {
-      slide.style.transition = "transform 0.8s ease-in-out"; // 👈 transición visible
+      slide.style.transition = "transform 0.8s ease-in-out";
       slide.style.transform = `translateX(-${i * 100}%)`;
     }
 
@@ -229,24 +227,23 @@
       goToSlide(index);
     }
 
-    document.getElementById("nextBtn").addEventListener("click", nextSlide);
-    document.getElementById("prevBtn").addEventListener("click", prevSlide);
-
-    // ===== AUTO SLIDE CADA 3 SEGUNDOS =====
-    let autoSlide = setInterval(nextSlide, 3000);
-
-    // Pausar auto-slide cuando el usuario usa botones (opcional)
     document.getElementById("nextBtn").addEventListener("click", () => {
-      clearInterval(autoSlide);
-      autoSlide = setInterval(nextSlide, 3000);
+      nextSlide();
+      resetAutoSlide();
     });
 
     document.getElementById("prevBtn").addEventListener("click", () => {
-      clearInterval(autoSlide);
-      autoSlide = setInterval(nextSlide, 3000);
+      prevSlide();
+      resetAutoSlide();
     });
 
-    // ===== BOTÓN MENSAJE (IGUAL QUE ANTES) =====
+    let autoSlide = setInterval(nextSlide, 3000);
+
+    function resetAutoSlide() {
+      clearInterval(autoSlide);
+      autoSlide = setInterval(nextSlide, 3000);
+    }
+
     const toggleBtn = document.getElementById("toggleMessageBtn");
     const messageBox = document.getElementById("messageBox");
 
@@ -259,7 +256,41 @@
         toggleBtn.textContent = "❌ Cerrar mensaje";
       }
     });
+
+    const music = document.getElementById("backgroundMusic");
+    const musicBtn = document.getElementById("musicBtn");
+    let isPlaying = false;
+
+    const playlist = [
+      "./musica/Floricienta  Flores Amarillas [Letra].mp3",
+      "./musica/Yellow-ColdPlay.mp3"
+    ];
+
+    let currentTrack = 0;
+
+    function loadAndPlay(trackIndex) {
+      music.src = playlist[trackIndex];
+      music.play();
+      isPlaying = true;
+      musicBtn.textContent = "⏸️";
+    }
+
+    music.addEventListener("ended", () => {
+      currentTrack = (currentTrack + 1) % playlist.length;
+      loadAndPlay(currentTrack);
+    });
+
+    musicBtn.addEventListener("click", () => {
+      if (!isPlaying) {
+        loadAndPlay(currentTrack);
+      } else {
+        music.pause();
+        isPlaying = false;
+        musicBtn.textContent = "🎵";
+      }
+    });
   </script>
+
 
 
 </body>
